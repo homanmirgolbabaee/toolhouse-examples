@@ -4,12 +4,12 @@ from anthropic import Anthropic
 from toolhouse import Toolhouse, Provider
 
 # Load API keys from environment variables
-CLAUDE_API_KEY = os.getenv("ANTHROPIC_KEY")
-TH_TOKEN = os.getenv("TOOLHOUSE_BEARER_TOKEN")
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+TOOLHOUSE_API_KEY = os.getenv("TOOLHOUSE_API_key")
 
 # Initialize Anthropic and Toolhouse clients
-client = Anthropic(api_key=CLAUDE_API_KEY)
-th = Toolhouse(access_token=TH_TOKEN, provider=Provider.ANTHROPIC)
+client = Anthropic(api_key=ANTHROPIC_API_KEY)
+th = Toolhouse(api_key=TOOLHOUSE_API_KEY, provider=Provider.ANTHROPIC)
 
 # Set timezone for the AI Agent
 th.set_metadata('timezone', '-7')
