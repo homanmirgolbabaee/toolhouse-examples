@@ -4,28 +4,22 @@ This agent helps users boost their Reddit engagement and karma by finding trendi
 
 > 👋 Just like other Toolhouse examples, this agent gives you powerful Reddit engagement capabilities with just **3 lines of code** for tool integration.
 
-## Intro 
+## Intro - [VIDEO HERE]
 
 ![Reddit Assistant Demo](https://github.com/user-attachments/assets/example-placeholder-image.gif)
 
 This Reddit Assistant helps you increase your karma and engagement on Reddit by:
 
-1. Finding trending posts that match your interests using web scraping
-2. Analyzing the content to identify engagement opportunities
-3. Crafting effective responses optimized for karma
-4. Delivering results via email or in the console
-
-To build this AI agent for Reddit engagement, we're using 3 tools:
-- [Get page contents](https://app.toolhouse.ai/store/scraper): Finds and analyzes Reddit posts
-- [Send email](https://app.toolhouse.ai/store/send_email): Delivers engagement opportunities to your inbox
-- [Get current time](https://app.toolhouse.ai/store/current_time): Recommends optimal posting times
-
+1. Finding posts (Hot,New,Top) 
+2. Analyzing the content using MCP servers (scraper,web_search,describe_image)
+3. Comes up responses optimized for karma
+4. Delivering results via email
 
 ## What This Agent Can Do
 
 The Reddit Engagement Assistant can:
 
-- Search for trending posts across various subreddits
+- Search for  posts across various subreddits
 - Analyze post content and existing comments to identify engagement opportunities
 - Draft concise, relevant responses optimized for karma
 - Format results in an organized manner
@@ -39,6 +33,7 @@ This agent leverages three essential Toolhouse tools:
 1. **[Get Page Contents](https://app.toolhouse.ai/store/scraper)**: To retrieve post content from Reddit
 2. **[Send Email](https://app.toolhouse.ai/store/send_email)**: To deliver engagement opportunities directly to your inbox
 3. **[Get Current Time](https://app.toolhouse.ai/store/current_time)**: To optimize posting times for maximum visibility
+4. **[Web Search](https://app.toolhouse.ai/store/web_search)**: To gather more info from web search.
 
 ## Getting Started
 
@@ -56,19 +51,11 @@ This agent leverages three essential Toolhouse tools:
    python agent.py
    ```
 
-## Example Interactions
-
-- "Search for recent hot posts on r/ChatGPT and draft responses to boost my karma"
-- "Find trending posts about AI tools across multiple subreddits"
-- "Email me engagement opportunities from r/LocalLLaMA and r/ChatGPT"
-- "What's the best time to post in r/MachineLearning for maximum engagement?"
-- "Draft a response to this post: [URL]"
-
 ## How It Works
 
 The Reddit Engagement Assistant follows these steps:
 
-1. **Search**: It scrapes Reddit to find trending posts in specified subreddits
+1. **Search**: It Searchs Reddit to find trending posts in specified subreddits
 2. **Analyze**: It evaluates post content, existing responses, and engagement patterns
 3. **Draft**: It creates tailored responses designed to maximize karma and engagement
 4. **Deliver**: It formats results and can email them directly to your inbox
@@ -94,16 +81,10 @@ response = client.messages.create(
 messages += th.run_tools(response)
 ```
 
-This approach drastically simplifies how we work with Reddit data:
-
-1. The scraper tool handles all the complexities of navigating Reddit's HTML structure
-2. The email tool manages formatting, authentication, and delivery 
-3. The time tool ensures recommendations are optimized for maximum visibility
-
 Without Toolhouse, we would need hundreds of lines of code to handle Reddit API authentication, response parsing, error handling, and thread analysis logic.
 
-lhouse Advantage
+Toolhouse Advantage
 
-With just a few lines of code using Toolhouse's API, this assistant can perform complex web scraping, content analysis, and email delivery functions. The integration is seamless and eliminates the need for complex authentication handlers or parsing logic for Reddit's API responses.
+With just a few lines of code using Toolhouse's API, this assistant can perform web scraping, content analysis, and email delivery functions. The integration is seamless and eliminates the need for complex authentication handlers or parsing logic for Reddit's API responses.
 
 This demonstrates how Toolhouse simplifies building powerful AI agents without the overhead of implementing each tool from scratch.
