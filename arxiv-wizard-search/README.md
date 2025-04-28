@@ -22,7 +22,7 @@ A powerful learning tool that helps you digest academic papers and web content m
     <img src="https://img.youtube.com/vi/ozeE4vr104o/0.jpg" width="400" alt="Demo Video">
   </a>
 </p>
-<p align="center"><strong>Demo Video (Click to Watch)</strong></p>
+<p align="center"><strong>Demo Video (Click to Watch on Toolhouse Youtube)</strong></p>
 
 ## Features
 
