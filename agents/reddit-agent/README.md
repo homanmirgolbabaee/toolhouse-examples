@@ -4,9 +4,9 @@ This agent helps users boost their Reddit engagement and karma by finding trendi
 
 > 👋 Just like other Toolhouse examples, this agent gives you powerful Reddit engagement capabilities with just **3 lines of code** for tool integration.
 
-## Intro - [VIDEO HERE]
+## Demo Video
 
-![Reddit Assistant Demo](https://github.com/user-attachments/assets/example-placeholder-image.gif)
+![Reddit Assistant Demo](Demo Video.gif)
 
 This Reddit Assistant helps you increase your karma and engagement on Reddit by:
 
