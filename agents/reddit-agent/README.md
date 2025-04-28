@@ -6,7 +6,7 @@ This agent helps users boost their Reddit engagement and karma by finding trendi
 
 ## Demo Video - Reddit Assistant
 
-![Demo GIF](Demo.gif)
+![Demo GIF](./Demo.gif)
 
 
 This Reddit Assistant helps you increase your karma and engagement on Reddit by:
