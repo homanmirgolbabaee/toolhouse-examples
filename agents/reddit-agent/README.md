@@ -45,10 +45,10 @@ This agent leverages three essential Toolhouse tools:
 
 2. Install dependencies as explained in the main README
 
-3. Run the agent:
+3. Run the Streamlit App:
    ```bash
    cd agents/reddit-assistant
-   python agent.py
+   streamlit run streamlit_app.py
    ```
 
 ## How It Works
