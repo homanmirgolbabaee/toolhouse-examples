@@ -5,14 +5,14 @@ from toolhouse import Toolhouse, Provider
 
 # Load API keys from environment variables
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
-TOOLHOUSE_API_KEY = os.getenv("TOOLHOUSE_API_key")
+TOOLHOUSE_API_KEY = os.getenv("TOOLHOUSE_API_KEY")
 
 # Initialize Anthropic and Toolhouse clients
 client = Anthropic(api_key=ANTHROPIC_API_KEY)
 th = Toolhouse(api_key=TOOLHOUSE_API_KEY, provider=Provider.ANTHROPIC)
 
 # Set timezone for the AI Agent
-th.set_metadata('timezone', '-7')
+th.set_metadata("timezone", "-7")
 
 # Define system message for the AI agent
 system_message = """
@@ -30,52 +30,55 @@ messages: List = []
 # Flag to check if it's the first question
 first_question = True
 
+
 def process_response(messages):
     global first_question
-    
+
     # Prompt user for question (different for first and follow-up questions)
     if first_question:
-        input_question = input("\033[36mHi I am a customer support bot. What is your question? \033[0m")
+        input_question = input(
+            "\033[36mHi I am a customer support bot. What is your question? \033[0m"
+        )
         first_question = False
     else:
         input_question = input("\033[36mDo you have a follow up question? \033[0m")
-    
+
     # Exit if user types '/quit' '/exit'
     if input_question.lower() in ["/quit", "/exit"]:
         exit()
 
-    
     # Add user's question to message history
-    messages.append({"role": "user", "content": f"{input_question}" })
-    
+    messages.append({"role": "user", "content": f"{input_question}"})
+
     # Generate initial response using Anthropic model
     response = client.messages.create(
-                model="claude-3-5-sonnet-20240620",
-                max_tokens=1024,
-                system=system_message,
-                # Get the tools from toolhouse SDK to perform actions based on the request
-                tools=th.get_tools(),
-                messages=messages
-            )
-    
+        model="claude-3-5-sonnet-20240620",
+        max_tokens=1024,
+        system=system_message,
+        # Get the tools from toolhouse SDK to perform actions based on the request
+        tools=th.get_tools(),
+        messages=messages,
+    )
+
     # Run tools based on the response
     messages += th.run_tools(response)
-    
+
     # Generate final response
     agent_setup = client.messages.create(
-    model="claude-3-5-sonnet-20240620",
-    max_tokens=1024,
-    system=system_message,
-    tools=th.get_tools(),
-    messages=messages
+        model="claude-3-5-sonnet-20240620",
+        max_tokens=1024,
+        system=system_message,
+        tools=th.get_tools(),
+        messages=messages,
     )
     agent_reply = agent_setup.content[0].text
-    
+
     # Print AI agent's response
     print("\033[33mSupport AI AGENT:\033[0m", agent_setup.content[0].text)
-    
+
     # Add AI's response to message history
-    messages.append({"role": "assistant", "content": f"{agent_reply}" })
+    messages.append({"role": "assistant", "content": f"{agent_reply}"})
+
 
 # Main loop to continuously process responses
 while True:

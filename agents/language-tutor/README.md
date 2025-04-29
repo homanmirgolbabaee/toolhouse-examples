@@ -18,6 +18,7 @@ This language learning assistant can:
 ## Supported Languages
 
 The agent can help with learning:
+
 - Spanish
 - French
 - German
@@ -37,12 +38,13 @@ This agent leverages three essential Toolhouse tools:
 ## Getting Started
 
 1. Make sure you have the necessary API keys set as environment variables:
+
    ```bash
    export ANTHROPIC_API_KEY="your_anthropic_api_key"
    export TOOLHOUSE_API_KEY="your_toolhouse_api_key"
    ```
 
-2. Install dependencies as explained in the main README
+2. Install dependencies found in requirements.txt as explained in the main README
 
 3. Run the agent:
    ```bash

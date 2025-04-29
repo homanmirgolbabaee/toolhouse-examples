@@ -8,10 +8,9 @@ This agent helps users boost their Reddit engagement and karma by finding trendi
 
 ![Demo GIF](demo.gif)
 
-
 This Reddit Assistant helps you increase your karma and engagement on Reddit by:
 
-1. Finding posts (Hot,New,Top) 
+1. Finding posts (Hot,New,Top)
 2. Analyzing the content using MCP servers (scraper,web_search,describe_image)
 3. Comes up responses optimized for karma
 4. Delivering results via email
@@ -20,7 +19,7 @@ This Reddit Assistant helps you increase your karma and engagement on Reddit by:
 
 The Reddit Engagement Assistant can:
 
-- Search for  posts across various subreddits
+- Search for posts across various subreddits
 - Analyze post content and existing comments to identify engagement opportunities
 - Draft concise, relevant responses optimized for karma
 - Format results in an organized manner
@@ -39,12 +38,13 @@ This agent leverages three essential Toolhouse tools:
 ## Getting Started
 
 1. Make sure you have the necessary API keys set as environment variables:
+
    ```bash
    export ANTHROPIC_API_KEY="your_anthropic_api_key"
    export TOOLHOUSE_API_KEY="your_toolhouse_api_key"
    ```
 
-2. Install dependencies as explained in the main README
+2. Install dependencies found in requirements.txt as explained in the main README
 
 3. Run the Streamlit App:
    ```bash

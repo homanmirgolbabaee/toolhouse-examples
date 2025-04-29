@@ -1,0 +1,5 @@
+streamlit
+anthropic
+toolhouse
+python-dotenv
+pandas
