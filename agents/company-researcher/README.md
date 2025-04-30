@@ -4,7 +4,7 @@
 
 The Startup Due Diligence Assistant is a powerful AI agent that helps investors research potential startup investments with minimal effort using Toolhouse tool integration, this agent collects comprehensive information about any startup from multiple sources.
 
-![Demo Screenshot](https://via.placeholder.com/800x450)
+![Demo Screenshot](demo.gif)
 
 ## What This Agent Can Do
 
