@@ -42,7 +42,7 @@ This agent leverages five essential Toolhouse tools:
 
 3. Run the Streamlit App:
    ```bash
-   streamlit run startup_dd_agent.py
+   streamlit run streamlit_app.py
    ```
 
 ## How It Works
