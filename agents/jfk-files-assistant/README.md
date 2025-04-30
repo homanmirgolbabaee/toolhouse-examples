@@ -34,7 +34,7 @@ To build this AI-powered document analyzer, we're using:
 
 ## Setting Up the Project
 
-First, ensure you have the necessary API keys set as environment variables:
+First, ensure you have the necessary API keys set as environment variables in a .env file:
 
 ```bash
 export GEMINI_API_KEY="your_gemini_api_key"
@@ -60,7 +60,7 @@ pip install -r requirements.txt
 Start the Streamlit application:
 
 ```bash
-streamlit run app.py
+streamlit run streamlit_app.py
 ```
 
 ## Key Features and Implementation Details
