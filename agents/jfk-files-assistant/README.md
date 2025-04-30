@@ -5,7 +5,7 @@ This project demonstrates how to build an advanced document analysis application
 > 👋 This application combines multimodal AI (vision + text) with Toolhouse's research capabilities to provide deeper insights into historical documents.
 
 ## Demo Preview
-![JFK Files Analyzer Demo](screenshots/demo.png)
+![JFK Files Analyzer Demo](demo.png)
 
 
 ## What This Application Does
