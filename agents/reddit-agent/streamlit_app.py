@@ -7,14 +7,12 @@ from datetime import datetime
 from typing import List, Dict, Any
 from anthropic import Anthropic
 from toolhouse import Toolhouse, Provider
-from dotenv import load_dotenv
+
 import pandas as pd
 
 # Import the Reddit client
 from reddit import RedditClient
 
-# Load environment variables
-load_dotenv()
 
 # Set page configuration
 st.set_page_config(
@@ -64,7 +62,17 @@ st.markdown("""
     }
     </style>
     """, unsafe_allow_html=True)
+# Sidebar for API keys 🔐
+st.sidebar.header("API Configuration")
+anthropic_api_key_input = st.sidebar.text_input("Anthropic API Key", type="password")
+toolhouse_api_key_input = st.sidebar.text_input("Toolhouse API Key", type="password")
 
+
+# Save API keys to session state
+if anthropic_api_key_input:
+    st.session_state["ANTHROPIC_API_KEY"] = anthropic_api_key_input
+if toolhouse_api_key_input:
+    st.session_state["TOOLHOUSE_API_KEY"] = toolhouse_api_key_input
 # Initialize session state
 if 'posts' not in st.session_state:
     st.session_state.posts = []
@@ -88,20 +96,9 @@ POPULAR_SUBREDDITS = [
 @st.cache_resource
 def initialize_clients():
     """Initialize Reddit, Anthropic, and Toolhouse clients"""
-    anthropic_api_key = os.getenv("ANTHROPIC_API_KEY")
-    toolhouse_api_key = os.getenv("TOOLHOUSE_API_KEY")
-    
-    # Check if API keys are available
-    if not anthropic_api_key:
-        st.error("Missing ANTHROPIC_API_KEY environment variable")
-        st.stop()
-    if not toolhouse_api_key:
-        st.error("Missing TOOLHOUSE_API_KEY environment variable")
-        st.stop()
-    
     # Initialize clients
-    anthropic_client = Anthropic(api_key=anthropic_api_key)
-    th_client = Toolhouse(api_key=toolhouse_api_key, provider=Provider.ANTHROPIC)
+    anthropic_client = Anthropic(api_key=anthropic_api_key_input)
+    th_client = Toolhouse(api_key=toolhouse_api_key_input, provider=Provider.ANTHROPIC)
     reddit_client = RedditClient(user_agent="RedditEngagementAssistant/1.0")
     
     return anthropic_client, th_client, reddit_client
