@@ -40,7 +40,7 @@ This agent leverages four essential Toolhouse tools:
 
 3. Run the Streamlit App:
    ```bash
-   streamlit run job_finder.py
+   streamlit run agent.py
    ```
 
 ## How It Works
