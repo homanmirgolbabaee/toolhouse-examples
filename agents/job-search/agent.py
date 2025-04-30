@@ -4,6 +4,9 @@ import json
 import re
 from anthropic import Anthropic
 from toolhouse import Toolhouse, Provider
+from dotenv import load_dotenv
+load_dotenv()
+
 
 # Initialize clients
 @st.cache_resource
@@ -23,12 +26,12 @@ def initialize_clients():
     
     return anthropic_client, th_client
 
-def search_jobs(anthropic_client, th_client, location):
+def search_jobs(anthropic_client, th_client, location,job_position):
     """Search for jobs using Toolhouse tools"""
     # Create a simple message
     messages = [{
         "role": "user", 
-        "content": f"Search for job openings in {location}. Return the results as a JSON object with format {{\"job_openings\": [{{\"title\": \"Job Title\", \"link\": \"URL\"}}]}}"
+        "content": f"Search for job openings for following job position:{job_position} in the following location:{location}. Return the results as a JSON object with format {{\"job_openings\": [{{\"title\": \"Job Title\", \"link\": \"URL\"}}]}}"
     }]
     
     # Call Claude with Toolhouse tools
@@ -138,7 +141,7 @@ st.markdown("Find job opportunities using Anthropic and Toolhouse")
 
 # Location input
 location = st.text_input("Enter location for job search", "spain")
-
+job_position = st.text_input("Enter job position", "software engineer")
 # Submit button
 if st.button("Find Jobs"):
     try:
@@ -147,7 +150,7 @@ if st.button("Find Jobs"):
         
         # Show loading spinner during search
         with st.spinner(f"Searching for jobs in {location}..."):
-            final_response, tool_results = search_jobs(anthropic_client, th_client, location)
+            final_response, tool_results = search_jobs(anthropic_client, th_client, location,job_position)
             response_text = final_response.content[0].text
             
             # Extract jobs
