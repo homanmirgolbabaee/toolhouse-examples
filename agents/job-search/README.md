@@ -1,7 +1,7 @@
 # Building a Job-Search agent with Anthropic and Toolhouse# AI Job Finder with Toolhouse
 
 This AI Job Finder agent helps you discover and apply for relevant job opportunities based on your preferences. Using just a few lines of code for Toolhouse tool integration, this agent searches for recent job listings, researches companies, and provides personalized application tips.
-
+## Try the demo: https://toolhouse-job-finder.streamlit.app/
 ![Job Finder Demo](demo.gif)
 
 ## What This Agent Can Do

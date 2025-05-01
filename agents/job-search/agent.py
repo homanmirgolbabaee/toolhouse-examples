@@ -4,16 +4,17 @@ import json
 import re
 from anthropic import Anthropic
 from toolhouse import Toolhouse, Provider
-from dotenv import load_dotenv
-load_dotenv()
+
+
 
 
 # Initialize clients
 @st.cache_resource
 def initialize_clients():
     """Initialize Anthropic and Toolhouse clients"""
-    anthropic_api_key = os.getenv("ANTHROPIC_API_KEY")
-    toolhouse_api_key = os.getenv("TOOLHOUSE_API_KEY")
+    anthropic_api_key = st.session_state.get("ANTHROPIC_API_KEY")
+    toolhouse_api_key = st.session_state.get("TOOLHOUSE_API_KEY")
+
     
     # Check if API keys are available
     if not anthropic_api_key or not toolhouse_api_key:
@@ -89,11 +90,21 @@ def extract_jobs(response_text):
 
 # Set up Streamlit UI
 st.set_page_config(
-    page_title="Simple Job Finder",
+    page_title="Toolhouse Job Finder",
     page_icon="💼",
     layout="centered"
 )
+# Sidebar for API keys 🔐
+st.sidebar.header("API Configuration")
+anthropic_api_key_input = st.sidebar.text_input("Anthropic API Key", type="password")
+toolhouse_api_key_input = st.sidebar.text_input("Toolhouse API Key", type="password")
 
+
+# Save API keys to session state
+if anthropic_api_key_input:
+    st.session_state["ANTHROPIC_API_KEY"] = anthropic_api_key_input
+if toolhouse_api_key_input:
+    st.session_state["TOOLHOUSE_API_KEY"] = toolhouse_api_key_input
 # Custom CSS for better styling
 st.markdown("""
     <style>
@@ -136,8 +147,8 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # Main app
-st.title("Simple Job Finder")
-st.markdown("Find job opportunities using Anthropic and Toolhouse")
+st.title("Toolhouse Job Finder")
+st.markdown("Find job openings using Toolhouse!")
 
 # Location input
 location = st.text_input("Enter location for job search", "spain")

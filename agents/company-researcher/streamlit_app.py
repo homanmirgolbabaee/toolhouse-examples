@@ -328,7 +328,17 @@ def main():
         layout="wide",
         initial_sidebar_state="expanded"
     )
-    
+    # Sidebar for API keys 🔐
+    st.sidebar.header("API Configuration")
+    anthropic_api_key_input = st.sidebar.text_input("Anthropic API Key", type="password")
+    toolhouse_api_key_input = st.sidebar.text_input("Toolhouse API Key", type="password")
+
+
+    # Save API keys to session state
+    if anthropic_api_key_input:
+        st.session_state["ANTHROPIC_API_KEY"] = anthropic_api_key_input
+    if toolhouse_api_key_input:
+        st.session_state["TOOLHOUSE_API_KEY"] = toolhouse_api_key_input
     # Custom CSS
     st.markdown("""
         <style>
@@ -393,12 +403,6 @@ def main():
         
         st.markdown("---")
         st.markdown("### About")
-        st.markdown("""
-        Built with:
-        - Streamlit
-        - Anthropic Claude
-        - Toolhouse SDK
-        """)
         # Add a link to Agent Studio
         st.markdown("<h2 style='color: #FF4B4B;'>Check out the Agent Studio where this agent was built: <a href='https://app.toolhouse.ai/agents/e0edf907-41b9-4529-b477-5c0d5fc6db9f'>Agent Studio Link</a></h2>", unsafe_allow_html=True)
             
