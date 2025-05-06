@@ -1,4 +1,4 @@
-# Building a JFK Files Analyzer with Streamlit, Gemini Vision, and Toolhouse
+# JFK Files Analyzer (Streamlit, Gemini Vision x Toolhouse)
 
 This project demonstrates how to build an advanced document analysis application that helps researchers analyze declassified JFK assassination files using Google's Gemini Vision models and Toolhouse for enhanced historical context.
 
