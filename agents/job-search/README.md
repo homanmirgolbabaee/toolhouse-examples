@@ -1,6 +1,6 @@
 # Job Finder agent with Toolhouse
 
-This AI agent helps you discover and apply for relevant job opportunities based on your preferences. Using just a few lines of code for Toolhouse tool integration, this agent searches for recent job listings, researches companies, and provides personalized application tips.
+This AI Job Finder agent helps you discover and apply for relevant job opportunities based on your preferences. Using just a few lines of code for Toolhouse tool integration, this agent searches for recent job listings, researches companies, and provides personalized application tips.
 
 ![Job Finder Demo](demo.gif)
 
@@ -40,7 +40,7 @@ This agent leverages four essential Toolhouse tools:
 
 3. Run the Streamlit App:
    ```bash
-   streamlit run job_finder.py
+   streamlit run agent.py
    ```
 
 ## How It Works

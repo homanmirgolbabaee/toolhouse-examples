@@ -4,6 +4,8 @@ This agent helps users boost their Reddit engagement and karma by finding trendi
 
 > 👋 Just like other Toolhouse examples, this agent gives you powerful Reddit engagement capabilities with just **3 lines of code** for tool integration.
 
+## Try the Demo: https://toolhouse-reddit-assistant.streamlit.app/
+
 ## Demo Video - Reddit Assistant
 
 ![Demo GIF](demo.gif)
