@@ -3,12 +3,47 @@ import requests
 import json
 import time
 import base64
+import os
+
+# Main Streamlit app
+st.set_page_config(page_title="Travel Advisor", layout="wide", initial_sidebar_state="collapsed")
+
+# Add sidebar for API key management
+with st.sidebar:
+    st.title("Settings")
+    
+    # API key input with environment variable fallback
+    api_key = st.text_input(
+        "Toolhouse API Key", 
+        value=os.environ.get("TOOLHOUSE_API_KEY", "th-Iim4benuS8hMsDNCWAFtOrQknQa5P9EsprRiaTIHpP0"),
+        type="password",
+        help="Enter your Toolhouse API key"
+    )
+    
+    # Save API key button
+    if st.button("Save API Key"):
+        if api_key:
+            st.success("API key saved for this session")
+        else:
+            st.error("Please enter an API key")
+    
+    # API key info and link
+    st.markdown("---")
+    st.markdown("### How to get an API key")
+    st.markdown("Get your API key from the [Toolhouse Console](https://toolhouse.ai/settings)")
+    
+    # Clear conversation button
+    if st.button("Clear Session Data"):
+        # Reset all session states
+        for key in list(st.session_state.keys()):
+            del st.session_state[key]
+        st.rerun()
 
 # Function to handle the API request and response for travel advice
 def fetch_travel_advice(destination, age, trip_duration):
     # Prepare the data for the POST request
     data = {
-        "chat_id": "9b757c6a-ae25-4264-b5e9-eea8d64d79d8",
+        "chat_id": "38c03f17-071e-46af-9632-bb55485513ed",
         "vars": {
             "destination": destination,
             "age": age,
@@ -18,7 +53,7 @@ def fetch_travel_advice(destination, age, trip_duration):
 
     # Headers for the API request
     headers = {
-        "Authorization": "Bearer th-Iim4benuS8hMsDNCWAFtOrQknQa5P9EsprRiaTIHpP0",
+        "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"
     }
 
@@ -130,7 +165,7 @@ def fetch_visual_tour(travel_plan_json):
     
     # Prepare the data for the POST request with the correct variable name "input_json"
     data = {
-        "chat_id": "75a769b1-5897-49b4-bfcd-d66e0117cdaa",  # Visual tour agent ID
+        "chat_id": "8079d372-16d8-46ed-aec3-38848c873db3",  # Visual tour agent ID
         "vars": {
             "input_json": travel_plan_json  # Using the exact variable name from your curl command
         }
@@ -138,7 +173,7 @@ def fetch_visual_tour(travel_plan_json):
 
     # Headers for the API request
     headers = {
-        "Authorization": "Bearer th-Iim4benuS8hMsDNCWAFtOrQknQa5P9EsprRiaTIHpP0",
+        "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"
     }
     
@@ -410,9 +445,6 @@ def get_copy_button(json_string, button_text="Copy JSON"):
     </script>
     """, unsafe_allow_html=True)
 
-# Main Streamlit app
-st.set_page_config(page_title="Travel Advisor", layout="wide", initial_sidebar_state="collapsed")
-
 # Custom CSS for styling the entire app
 st.markdown("""
 <style>
@@ -623,6 +655,6 @@ elif st.session_state.page == "visual_tour":
 # Add a footer
 st.markdown("""
 <div style="margin-top: 50px; padding: 20px; background-color: #f8f9fa; border-radius: 5px; text-align: center;">
-    <p style="color: #555; margin-bottom: 0;">Powered by Toolhouse • Built with ❤️ using Streamlit</p>
+    <p style="color: #555; margin-bottom: 0;">Powered by Toolhouse ❤️</p>
 </div>
 """, unsafe_allow_html=True)

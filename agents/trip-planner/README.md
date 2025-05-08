@@ -2,7 +2,7 @@
 
 A Streamlit application that creates personalized travel plans and visual tours for any destination using Toolhouse.ai agents.
 
-![Travel Advisor App Screenshot](app_screenshot.png)
+![Travel Advisor App Screenshot](assets/demo.gif)
 
 ## What This App Does
 
@@ -42,15 +42,15 @@ The app uses the Toolhouse AI platform to generate travel plans and visual tours
 
 3. Run the Streamlit app:
    ```
-   streamlit run app.py
+   streamlit run streamlit_app.py
    ```
 
 ## How to Use
 
 1. **Enter your travel details**:
    - Destination (e.g., "Rome", "Tokyo", "Paris")
-   - Your age
-   - Trip duration in days
+   - Your age (e.g., "20", "40", "80")
+   - Trip duration in days (e.g., "2 Days", "5 Days", "7")
 
 2. **Click "Get Travel Advice"** to generate your personalized travel plan
 
@@ -94,8 +94,3 @@ This app uses the Toolhouse AI API. The app comes with a demo API key, but for p
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- Built with [Streamlit](https://streamlit.io/)
-- Powered by [Toolhouse AI](https://toolhouse.ai)
