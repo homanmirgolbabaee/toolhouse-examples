@@ -2,9 +2,9 @@
 ## Try the Demo: https://toolhouse-comapany-researcher.streamlit.app/
 ## Introduction
 
-The Startup Due Diligence Assistant is a powerful AI agent that helps investors research potential startup investments with minimal effort using Toolhouse tool integration, this agent collects comprehensive information about any startup from multiple sources.
+The Startup Due Diligence Assistant is a smart AI agent that makes it easy for investors/enthusiasts to learn about potential startup investments. By using Toolhouse tools, it gathers detailed information from various sources with very little effort required.
 
-![Demo Screenshot](demo.gif)
+![Demo Screenshot](assets/demo.gif)
 
 ## What This Agent Can Do
 
@@ -75,7 +75,7 @@ response = anthropic_client.messages.create(
 tool_results = th_client.run_tools(response)
 ```
 
-Without Toolhouse, we would need hundreds of lines of code to handle web searches, LinkedIn data extraction, Twitter API authentication, email sending, and error handling for each of these services.
+Without Toolhouse, we would need hundreds of lines of code to handle tools like web searches, LinkedIn data extraction, Twitter API authentication, email sending, and error handling for each of these services.
 
 ## The Toolhouse Advantage
 

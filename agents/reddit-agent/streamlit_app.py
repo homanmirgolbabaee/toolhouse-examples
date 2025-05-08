@@ -67,12 +67,18 @@ st.sidebar.header("API Configuration")
 anthropic_api_key_input = st.sidebar.text_input("Anthropic API Key", type="password")
 toolhouse_api_key_input = st.sidebar.text_input("Toolhouse API Key", type="password")
 
-
-# Save API keys to session state
 if anthropic_api_key_input:
+    # Clear cached resources when API key changes
+    if "ANTHROPIC_API_KEY" not in st.session_state or st.session_state["ANTHROPIC_API_KEY"] != anthropic_api_key_input:
+        st.cache_resource.clear()
     st.session_state["ANTHROPIC_API_KEY"] = anthropic_api_key_input
+    
 if toolhouse_api_key_input:
+    # Clear cached resources when API key changes
+    if "TOOLHOUSE_API_KEY" not in st.session_state or st.session_state["TOOLHOUSE_API_KEY"] != toolhouse_api_key_input:
+        st.cache_resource.clear()
     st.session_state["TOOLHOUSE_API_KEY"] = toolhouse_api_key_input
+
 # Initialize session state
 if 'posts' not in st.session_state:
     st.session_state.posts = []
@@ -97,8 +103,13 @@ POPULAR_SUBREDDITS = [
 def initialize_clients():
     """Initialize Reddit, Anthropic, and Toolhouse clients"""
     # Initialize clients
-    anthropic_client = Anthropic(api_key=anthropic_api_key_input)
-    th_client = Toolhouse(api_key=toolhouse_api_key_input, provider=Provider.ANTHROPIC)
+    anthropic_client = Anthropic(api_key=st.session_state.get("ANTHROPIC_API_KEY", ""))
+    
+    # Fix: Use proper Toolhouse initialization with API key
+    # Note: Use the API key from session state, not directly from the input
+    th_client = Toolhouse(api_key=st.session_state.get("TOOLHOUSE_API_KEY", ""), 
+                         provider=Provider.ANTHROPIC)
+    
     reddit_client = RedditClient(user_agent="RedditEngagementAssistant/1.0")
     
     return anthropic_client, th_client, reddit_client

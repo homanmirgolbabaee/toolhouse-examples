@@ -11,22 +11,30 @@ load_dotenv()
 # Initialize clients
 @st.cache_resource
 def initialize_clients():
-    """Initialize Anthropic and Toolhouse clients"""
-    anthropic_api_key = os.getenv("ANTHROPIC_API_KEY")
-    toolhouse_api_key = os.getenv("TOOLHOUSE_API_KEY")
-    
-    # Check if API keys are available
+    """Initialize Anthropic and Toolhouse clients, prioritizing session state keys."""
+    # Try getting keys from Streamlit session state first
+    anthropic_api_key = st.session_state.get("ANTHROPIC_API_KEY")
+    toolhouse_api_key = st.session_state.get("TOOLHOUSE_API_KEY")
+
+    # If not in session state, try environment variables (e.g., from .env)
     if not anthropic_api_key:
-        st.error("Missing ANTHROPIC_API_KEY environment variable")
+         anthropic_api_key = os.getenv("ANTHROPIC_API_KEY")
+    if not toolhouse_api_key:
+         toolhouse_api_key = os.getenv("TOOLHOUSE_API_KEY")
+
+    # Check if keys are available
+    if not anthropic_api_key:
+        st.error("ANTHROPIC_API_KEY not found. Please add it to your .env file or the sidebar.")
         st.stop()
     if not toolhouse_api_key:
-        st.error("Missing TOOLHOUSE_API_KEY environment variable")
+        st.error("TOOLHOUSE_API_KEY not found. Please add it to your .env file or the sidebar.")
         st.stop()
-    
+
     # Initialize clients
     anthropic_client = Anthropic(api_key=anthropic_api_key)
+    # Ensure provider is correctly passed if needed by Toolhouse - Provider.ANTHROPIC seems correct
     th_client = Toolhouse(api_key=toolhouse_api_key, provider=Provider.ANTHROPIC)
-    
+
     return anthropic_client, th_client
 
 # System prompt for the due diligence assistant
@@ -469,21 +477,6 @@ def main():
             # Display the report
             st.markdown("<h2 class='sub-header'>Due Diligence Report</h2>", unsafe_allow_html=True)
             st.markdown(f"<div class='report-container'>{report}</div>", unsafe_allow_html=True)
-            
-            # Provide debug information in an expander
-            with st.expander("Debug Information", expanded=False):
-                st.markdown("### Message History")
-                for i, msg in enumerate(messages):
-                    role = msg.get("role", "unknown")
-                    content = msg.get("content", "")
-                    
-                    if isinstance(content, list):
-                        content = "[Complex content structure]"
-                    elif isinstance(content, str) and len(content) > 500:
-                        content = content[:500] + "... [truncated]"
-                    
-                    st.markdown(f"**Message {i+1} ({role})**: {content}")
-                
         except Exception as e:
             st.error(f"An error occurred: {str(e)}")
     
